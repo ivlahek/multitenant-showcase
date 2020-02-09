@@ -13,13 +13,13 @@ public class UserAccountAsserter {
     public void assertUserAccount(UserAccount userAccount, CreateUserAccountDTO createUserAccountDTO) {
         assertThat(userAccount.getFirstName()).isEqualTo(createUserAccountDTO.getFirstName());
         assertThat(userAccount.getLastName()).isEqualTo(createUserAccountDTO.getLastName());
-        assertThat(userAccount.getOrganization().getId()).isEqualTo(organizationId);
+        assertThat(userAccount.getTenant().getId()).isEqualTo(organizationId);
     }
 
     public void assertUserAccount(UserAccountDTO userAccountDTO, UserAccount userAccount) {
         assertThat(userAccount.getFirstName()).isEqualTo(userAccountDTO.getFirstName());
         assertThat(userAccount.getLastName()).isEqualTo(userAccountDTO.getLastName());
-        assertThat(userAccount.getOrganization().getId()).isEqualTo(organizationId);
+        assertThat(userAccount.getTenant().getId()).isEqualTo(organizationId);
     }
 
     public UserAccountAsserter withOrganizationId(int organizationId) {

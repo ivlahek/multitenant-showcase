@@ -4,7 +4,7 @@ public final class MobileApplicationBuilder {
     private Integer id;
     private String name = "mobile-app-name";
     private UserAccount userAccount;
-    private Organization organization;
+    private Tenant tenant;
 
     private MobileApplicationBuilder() {
     }
@@ -38,8 +38,8 @@ public final class MobileApplicationBuilder {
         return mobileApplication;
     }
 
-    public MobileApplicationBuilder withOrganization(Organization organization) {
-        this.organization = organization;
+    public MobileApplicationBuilder withOrganization(Tenant tenant) {
+        this.tenant = tenant;
         return this;
     }
 }

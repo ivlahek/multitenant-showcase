@@ -1,13 +1,12 @@
-# Acceptance test showcase
+# Multi tenant application using Spring Boot and Hibernate
 This is a maven project. It can be executed by typing 
 > mvn clean install -Pjenkins.
 
-UAT tests in which steps are combined in a pipeline are located in the hr.ivlahek.showcase.uat.v2.TestUatSteps test class.
+In this tutorial we will learn how to build a multi tenant application using Spring Boot and Hibernate. 
 
-Steps are located in the hr.ivlahek.showcase.uat.v2.steps package.
+We will show how to build a multi tenant application in which tenants are using shared database and shared schema. 
 
-UAT tests can be executed by running the UatSuiteTest test class.
+Others multi tenant approaches are supported by the Hibernate and Spring out of the box. 
 
-hr.ivlahek.showcase.uat.v1 package contains UAT tests which are written old fashioned way.
-
+Shared database and shared schema is not supported by Hibernate and Spring and some manual labor is needed.
 

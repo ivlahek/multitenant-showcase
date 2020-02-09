@@ -5,8 +5,8 @@ import hr.ivlahek.showcase.dto.mobileapp.CreateMobileApplicationDTO;
 import hr.ivlahek.showcase.dto.mobileapp.CreateMobileApplicationDTOBuilder;
 import hr.ivlahek.showcase.dto.notification.NotificationEndPoints;
 import hr.ivlahek.showcase.dto.notification.SendNotificationRequest;
-import hr.ivlahek.showcase.dto.organization.CreateOrganizationDTO;
-import hr.ivlahek.showcase.dto.organization.OrganizationDTO;
+import hr.ivlahek.showcase.dto.organization.CreatTenantDTO;
+import hr.ivlahek.showcase.dto.organization.TenantDTO;
 import hr.ivlahek.showcase.dto.organization.OrganizationEndPoints;
 import hr.ivlahek.showcase.dto.user.CreateUserAccountDTO;
 import hr.ivlahek.showcase.dto.user.UserAccountDTO;
@@ -38,11 +38,11 @@ public class UatEventTest extends UatAbstractTest {
     @Test
     @Ignore
     public void should_create_organization_rest__user_with_rest__mobile_app_with_event__and_send_notification() throws InterruptedException {
-        CreateOrganizationDTO createOrganizationResource = new CreateOrganizationDTO();
+        CreatTenantDTO createOrganizationResource = new CreatTenantDTO();
         createOrganizationResource.setName("organization-name");
         createOrganizationResource.setExternalId(EntityDefaults.ORGANIZATION_EXTERNAL_ID);
 
-        ResponseEntity<OrganizationDTO> organizationDTOResponse = testRestTemplate.postForEntity(OrganizationEndPoints.ORGANIZATION_RESOURCE, createOrganizationResource, OrganizationDTO.class);
+        ResponseEntity<TenantDTO> organizationDTOResponse = testRestTemplate.postForEntity(OrganizationEndPoints.TENANT_RESOURCE, createOrganizationResource, TenantDTO.class);
 
         assertThat(organizationDTOResponse.getStatusCodeValue()).isEqualTo(200);
 

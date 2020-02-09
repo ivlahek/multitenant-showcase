@@ -8,7 +8,7 @@ import hr.ivlahek.showcase.exception.NotFoundException;
 import hr.ivlahek.showcase.exception.messages.ExceptionMessage;
 import hr.ivlahek.showcase.persistence.entity.MobileApplication;
 import hr.ivlahek.showcase.persistence.repository.MobileApplicationRepository;
-import hr.ivlahek.showcase.rest.organization.OrganizationService;
+import hr.ivlahek.showcase.rest.organization.TenantService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class NotificationController {
     private static final Logger logger = LoggerFactory.getLogger(NotificationController.class);
 
     @Autowired
-    private OrganizationService organizationService;
+    private TenantService tenantService;
     @Autowired
     private MobileApplicationRepository mobileApplicationRepository;
 

@@ -5,7 +5,6 @@ import hr.ivlahek.showcase.aop.TenantContext;
 import hr.ivlahek.showcase.dto.mobileapp.CreateMobileApplicationDTO;
 import hr.ivlahek.showcase.dto.mobileapp.MobileApplicationDTO;
 import hr.ivlahek.showcase.dto.mobileapp.MobileApplicationEndPoints;
-import hr.ivlahek.showcase.dto.organization.OrganizationDTO;
 import hr.ivlahek.showcase.persistence.entity.MobileApplication;
 import hr.ivlahek.showcase.persistence.entity.MobileApplicationBuilder;
 import org.junit.Test;
@@ -26,7 +25,7 @@ public class MobileApplicationControllerTest extends RestIntegrationTest {
         createMobileApplicationDTO.setUserAccountId(userAccount.getId());
 
         //OPERATE
-        ResponseEntity<MobileApplicationDTO> responseEntity = restTemplate.postForEntity(MobileApplicationEndPoints.MOBILE_APPLICATION_RESOURCE, createMobileApplicationDTO, MobileApplicationDTO.class, organization.getExternalId());
+        ResponseEntity<MobileApplicationDTO> responseEntity = restTemplate.postForEntity(MobileApplicationEndPoints.MOBILE_APPLICATION_RESOURCE, createMobileApplicationDTO, MobileApplicationDTO.class, tenant.getExternalId());
 
         //CHECK
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
@@ -35,13 +34,13 @@ public class MobileApplicationControllerTest extends RestIntegrationTest {
 
     @Test
     public void should_get_by_id_mobile_app_id() {
-        TenantContext.setCurrentTenant(organization);
+        TenantContext.setCurrentTenant(tenant);
         MobileApplication mobileApplication = MobileApplicationBuilder.aMobileApplication().withUserAccount(userAccount).build();
         mobileApplicationRepository.save(mobileApplication);
         TenantContext.clear();
 
         //OPERATE
-        ResponseEntity<MobileApplicationDTO> responseEntity = restTemplate.getForEntity(MobileApplicationEndPoints.MOBILE_APPLICATION_RESOURCE_BY_ID, MobileApplicationDTO.class, organization.getExternalId(), mobileApplication.getId());
+        ResponseEntity<MobileApplicationDTO> responseEntity = restTemplate.getForEntity(MobileApplicationEndPoints.MOBILE_APPLICATION_RESOURCE_BY_ID, MobileApplicationDTO.class, tenant.getExternalId(), mobileApplication.getId());
 
         //CHECK
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);

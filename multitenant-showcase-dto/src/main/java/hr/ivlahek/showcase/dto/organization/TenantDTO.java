@@ -3,7 +3,7 @@ package hr.ivlahek.showcase.dto.organization;
 import lombok.Data;
 
 @Data
-public class OrganizationDTO {
+public class TenantDTO {
 
     private String id;
 

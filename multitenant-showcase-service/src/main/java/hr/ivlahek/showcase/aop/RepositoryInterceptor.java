@@ -24,8 +24,9 @@ public class RepositoryInterceptor {
     public Object inWebLayer(ProceedingJoinPoint joinPoint) throws Throwable {
         if (entityManager.isJoinedToTransaction()) {
             Session session = entityManager.unwrap(Session.class);
-            session.enableFilter("userAccountFilter").setParameter("organizationId", TenantContext.getCurrentOrganization().getId());
-            session.enableFilter("mobileApplicationFilter").setParameter("organizationId", TenantContext.getCurrentOrganization().getId());
+            Integer id = TenantContext.getCurrentTenant().getId();
+            session.enableFilter("userAccountFilter").setParameter("tenantId", id);
+            session.enableFilter("mobileApplicationFilter").setParameter("tenantId", id);
         }
         return joinPoint.proceed();
     }

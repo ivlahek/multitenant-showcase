@@ -7,7 +7,7 @@ import hr.ivlahek.showcase.dto.user.UserAccountDTO;
 import hr.ivlahek.showcase.dto.user.UserAccountEndpoints;
 import hr.ivlahek.showcase.persistence.entity.UserAccount;
 import hr.ivlahek.showcase.persistence.repository.UserAccountRepository;
-import hr.ivlahek.showcase.rest.organization.OrganizationService;
+import hr.ivlahek.showcase.rest.organization.TenantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserAccountController {
 
     @Autowired
-    private OrganizationService organizationService;
+    private TenantService tenantService;
     @Autowired
     private UserAccountRepository userAccountRepository;
     @Autowired
@@ -38,7 +38,7 @@ public class UserAccountController {
 
     private UserAccountDTO map(UserAccount userAccount) {
         UserAccountDTO userAccountDTO = new UserAccountDTO();
-        userAccountDTO.setOrganizationId(userAccount.getOrganization().getExternalId());
+        userAccountDTO.setOrganizationId(userAccount.getTenant().getExternalId());
         userAccountDTO.setId(userAccount.getId());
         userAccountDTO.setLastName(userAccount.getLastName());
         userAccountDTO.setFirstName(userAccount.getFirstName());

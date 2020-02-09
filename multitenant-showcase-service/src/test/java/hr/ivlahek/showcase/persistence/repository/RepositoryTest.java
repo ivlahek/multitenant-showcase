@@ -3,8 +3,8 @@ package hr.ivlahek.showcase.persistence.repository;
 import hr.ivlahek.showcase.aop.TenantContext;
 import hr.ivlahek.showcase.event.MessageReceiver;
 import hr.ivlahek.showcase.persistence.IntegrationTest;
-import hr.ivlahek.showcase.persistence.entity.Organization;
-import hr.ivlahek.showcase.persistence.entity.OrganizationBuilder;
+import hr.ivlahek.showcase.persistence.entity.Tenant;
+import hr.ivlahek.showcase.persistence.entity.TenantBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.experimental.categories.Category;
@@ -20,28 +20,28 @@ import org.springframework.test.context.junit4.SpringRunner;
 public abstract class RepositoryTest {
 
     @Autowired
-    OrganizationRepository organizationRepository;
+    TenantRepository tenantRepository;
     @Autowired
     private UserAccountRepository userAccountRepository;
     @Autowired
     private MobileApplicationRepository mobileApplicationRepository;
     @MockBean
     private MessageReceiver messageReceiver;
-    Organization organization;
+    Tenant tenant;
 
     @Before
     public void setUp() {
-        organization = OrganizationBuilder.anOrganization().build();
-        organizationRepository.save(organization);
+        tenant = TenantBuilder.anOrganization().build();
+        tenantRepository.save(tenant);
 
-        TenantContext.setCurrentTenant(organization);
+        TenantContext.setCurrentTenant(tenant);
     }
 
     @After
     public void tearDown() throws Exception {
         mobileApplicationRepository.deleteAll();
         userAccountRepository.deleteAll();
-        organizationRepository.deleteAll();
+        tenantRepository.deleteAll();
         TenantContext.clear();
     }
 }

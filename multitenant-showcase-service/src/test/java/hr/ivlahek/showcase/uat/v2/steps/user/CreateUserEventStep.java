@@ -1,6 +1,6 @@
 package hr.ivlahek.showcase.uat.v2.steps.user;
 
-import hr.ivlahek.showcase.dto.organization.OrganizationDTO;
+import hr.ivlahek.showcase.dto.organization.TenantDTO;
 import hr.ivlahek.showcase.dto.user.CreateUserAccountDTO;
 import hr.ivlahek.showcase.dto.user.CreateUserAccountDTOBuilder;
 import hr.ivlahek.showcase.dto.user.UserAccountDTO;
@@ -29,10 +29,10 @@ public class CreateUserEventStep implements CreateUserStep {
     private Producer producer;
 
     @Override
-    public UserAccountDTO createUserAccount(OrganizationDTO organizationDTO) throws InterruptedException {
+    public UserAccountDTO createUserAccount(TenantDTO tenantDTO) throws InterruptedException {
         CreateUserAccountDTO createUserAccountDTO = CreateUserAccountDTOBuilder.aCreateUserAccountDTO().build();
         CreateUserCommand createUserCommand = CreateUserCommandBuilder.aCreateUserCommand()
-                .withOrganizationId(organizationDTO.getId())
+                .withOrganizationId(tenantDTO.getId())
                 .withCreateUserAccountDTO(createUserAccountDTO)
                 .build();
         producer.send(new ProducerRecord<>("showcase-topic", 0, null, jsonConverter.write(createUserCommand)));

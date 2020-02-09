@@ -3,10 +3,9 @@ package hr.ivlahek.showcase.rest.useraccount;
 import hr.ivlahek.showcase.dto.user.CreateUserAccountDTO;
 import hr.ivlahek.showcase.exception.NotFoundException;
 import hr.ivlahek.showcase.exception.messages.ExceptionMessage;
-import hr.ivlahek.showcase.persistence.entity.Organization;
 import hr.ivlahek.showcase.persistence.entity.UserAccount;
 import hr.ivlahek.showcase.persistence.repository.UserAccountRepository;
-import hr.ivlahek.showcase.rest.organization.OrganizationService;
+import hr.ivlahek.showcase.rest.organization.TenantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,7 @@ public class UserAccountService {
     @Autowired
     private UserAccountRepository userAccountRepository;
     @Autowired
-    private OrganizationService organizationService;
+    private TenantService tenantService;
 
     public UserAccount findById(int userAccountId) {
         Optional<UserAccount> userAccount = userAccountRepository.findById(userAccountId);

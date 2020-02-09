@@ -23,8 +23,8 @@ public class MobileApplication {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "organization_id")
-    private Organization organization;
+    @JoinColumn(name = "tenant_id")
+    private Tenant tenant;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_account_id")
@@ -46,8 +46,8 @@ public class MobileApplication {
         this.name = name;
     }
 
-    public Organization getOrganization() {
-        return organization;
+    public Tenant getTenant() {
+        return tenant;
     }
 
     public UserAccount getUserAccount() {
@@ -61,6 +61,6 @@ public class MobileApplication {
     @PrePersist
     @PreUpdate
     public void prePersist() {
-        organization = TenantContext.getCurrentOrganization();
+        tenant = TenantContext.getCurrentTenant();
     }
 }

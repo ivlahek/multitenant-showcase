@@ -25,14 +25,14 @@ public class UserAccountControllerTest extends RestIntegrationTest {
         createUserAccountDTO.setLastName("last-name");
 
         //OPERATE
-        ResponseEntity<UserAccountDTO> responseEntity = restTemplate.postForEntity(UserAccountEndpoints.USER_RESOURCE, createUserAccountDTO, UserAccountDTO.class, organization.getExternalId());
+        ResponseEntity<UserAccountDTO> responseEntity = restTemplate.postForEntity(UserAccountEndpoints.USER_RESOURCE, createUserAccountDTO, UserAccountDTO.class, tenant.getExternalId());
 
         //CHECK
         assertThat(responseEntity.getBody().getId()).isNotNull();
         UserAccount userAccount = userAccountRepository.findById(responseEntity.getBody().getId()).get();
         assertThat(userAccount).isNotNull();
         new UserAccountAsserter()
-                .withOrganizationId(organization.getId())
+                .withOrganizationId(tenant.getId())
                 .assertUserAccount(userAccount, createUserAccountDTO);
 
     }
@@ -40,12 +40,12 @@ public class UserAccountControllerTest extends RestIntegrationTest {
     @Test
     public void should_get_user_account() {
         //OPERATE
-        ResponseEntity<UserAccountDTO> responseEntity = restTemplate.getForEntity(UserAccountEndpoints.USER_RESOURCE_BY_ID, UserAccountDTO.class, organization.getExternalId(), userAccount.getId());
+        ResponseEntity<UserAccountDTO> responseEntity = restTemplate.getForEntity(UserAccountEndpoints.USER_RESOURCE_BY_ID, UserAccountDTO.class, tenant.getExternalId(), userAccount.getId());
 
         //CHECK
         assertThat(responseEntity.getBody().getId()).isEqualTo(userAccount.getId());
         new UserAccountAsserter()
-                .withOrganizationId(organization.getId())
+                .withOrganizationId(tenant.getId())
                 .assertUserAccount(responseEntity.getBody(), userAccount);
     }
 }

@@ -1,7 +1,7 @@
 package hr.ivlahek.showcase.uat.v2.steps.organization;
 
-import hr.ivlahek.showcase.dto.organization.CreateOrganizationDTO;
-import hr.ivlahek.showcase.dto.organization.OrganizationDTO;
+import hr.ivlahek.showcase.dto.organization.CreatTenantDTO;
+import hr.ivlahek.showcase.dto.organization.TenantDTO;
 import hr.ivlahek.showcase.dto.organization.OrganizationEndPoints;
 import hr.ivlahek.showcase.persistence.entity.EntityDefaults;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -16,12 +16,12 @@ public class CreateOrganizationRestStep implements CreateOrganizationStep {
     protected TestRestTemplate restTemplate;
 
     @Override
-    public OrganizationDTO createOrganization() {
-        CreateOrganizationDTO createOrganizationResource = new CreateOrganizationDTO();
+    public TenantDTO createOrganization() {
+        CreatTenantDTO createOrganizationResource = new CreatTenantDTO();
         createOrganizationResource.setName("organization-name");
         createOrganizationResource.setExternalId(EntityDefaults.ORGANIZATION_EXTERNAL_ID);
 
-        ResponseEntity<OrganizationDTO> organizationDTOResponse = restTemplate.postForEntity(OrganizationEndPoints.ORGANIZATION_RESOURCE, createOrganizationResource, OrganizationDTO.class);
+        ResponseEntity<TenantDTO> organizationDTOResponse = restTemplate.postForEntity(OrganizationEndPoints.TENANT_RESOURCE, createOrganizationResource, TenantDTO.class);
 
         assertThat(organizationDTOResponse.getStatusCodeValue()).isEqualTo(200);
 

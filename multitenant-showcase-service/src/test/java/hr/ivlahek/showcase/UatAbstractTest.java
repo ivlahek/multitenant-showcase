@@ -3,7 +3,7 @@ package hr.ivlahek.showcase;
 import hr.ivlahek.showcase.mapping.JsonConverter;
 import hr.ivlahek.showcase.persistence.IntegrationTest;
 import hr.ivlahek.showcase.persistence.repository.MobileApplicationRepository;
-import hr.ivlahek.showcase.persistence.repository.OrganizationRepository;
+import hr.ivlahek.showcase.persistence.repository.TenantRepository;
 import hr.ivlahek.showcase.persistence.repository.UserAccountRepository;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -34,7 +34,7 @@ import java.util.Map;
 public abstract class UatAbstractTest {
     @Autowired
     protected
-    OrganizationRepository organizationRepository;
+    TenantRepository TEnantRepository;
     @Autowired
     protected UserAccountRepository userAccountRepository;
     @Autowired
@@ -60,7 +60,7 @@ public abstract class UatAbstractTest {
     public void tearDown() {
         mobileApplicationRepository.deleteAll();
         userAccountRepository.deleteAll();
-        organizationRepository.deleteAll();
+        TEnantRepository.deleteAll();
     }
 
 }

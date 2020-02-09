@@ -1,7 +1,7 @@
 package hr.ivlahek.showcase.aop;
 
-import hr.ivlahek.showcase.persistence.entity.Organization;
-import hr.ivlahek.showcase.persistence.repository.OrganizationRepository;
+import hr.ivlahek.showcase.persistence.entity.Tenant;
+import hr.ivlahek.showcase.persistence.repository.TenantRepository;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -28,7 +28,7 @@ public class TenantInterceptor implements Ordered {
 
     private static final Logger log = LoggerFactory.getLogger(TenantInterceptor.class);
 
-    private final OrganizationRepository organizationRepository;
+    private final TenantRepository TEnantRepository;
 
     @Around("@annotation(InboundRequest)")
     public Object logInboundRequest(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -37,11 +37,11 @@ public class TenantInterceptor implements Ordered {
         String companyId = extractCompanyId(joinPoint)
                 .orElseThrow(RuntimeException::new);
 
-        Organization organization = organizationRepository
+        Tenant tenant = TEnantRepository
                 .findByExternalId(companyId)
                 .orElseThrow(RuntimeException::new);
 
-        TenantContext.setCurrentTenant(organization);
+        TenantContext.setCurrentTenant(tenant);
 
         Object proceed = joinPoint.proceed();
 

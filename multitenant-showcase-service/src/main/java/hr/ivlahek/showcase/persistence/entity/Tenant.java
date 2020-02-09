@@ -3,12 +3,12 @@ package hr.ivlahek.showcase.persistence.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "organization")
-public class Organization {
+@Table(name = "tenant")
+public class Tenant {
 
     @Id
-    @SequenceGenerator(name = "organization_sequence", sequenceName = "organization_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "organization_sequence")
+    @SequenceGenerator(name = "tenant_sequence", sequenceName = "tenant_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tenant_sequence")
     @Column(name = "id", nullable = false, unique = true)
     private Integer id;
 

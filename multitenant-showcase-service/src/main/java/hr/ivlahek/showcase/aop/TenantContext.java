@@ -1,16 +1,16 @@
 package hr.ivlahek.showcase.aop;
 
-import hr.ivlahek.showcase.persistence.entity.Organization;
+import hr.ivlahek.showcase.persistence.entity.Tenant;
 
 public class TenantContext {
 
-    private static ThreadLocal<Organization> currentTenant = new InheritableThreadLocal<>();
+    private static ThreadLocal<Tenant> currentTenant = new InheritableThreadLocal<>();
 
-    public static Organization getCurrentOrganization() {
+    public static Tenant getCurrentTenant() {
         return currentTenant.get();
     }
 
-    public static void setCurrentTenant(Organization tenant) {
+    public static void setCurrentTenant(Tenant tenant) {
         currentTenant.set(tenant);
     }
 

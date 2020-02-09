@@ -4,10 +4,9 @@ import hr.ivlahek.showcase.dto.mobileapp.CreateMobileApplicationDTO;
 import hr.ivlahek.showcase.exception.NotFoundException;
 import hr.ivlahek.showcase.exception.messages.ExceptionMessage;
 import hr.ivlahek.showcase.persistence.entity.MobileApplication;
-import hr.ivlahek.showcase.persistence.entity.Organization;
 import hr.ivlahek.showcase.persistence.entity.UserAccount;
 import hr.ivlahek.showcase.persistence.repository.MobileApplicationRepository;
-import hr.ivlahek.showcase.rest.organization.OrganizationService;
+import hr.ivlahek.showcase.rest.organization.TenantService;
 import hr.ivlahek.showcase.rest.useraccount.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ public class MobileApplicationService {
     @Autowired
     private MobileApplicationRepository mobileApplicationRepository;
     @Autowired
-    private OrganizationService organizationService;
+    private TenantService tenantService;
     @Autowired
     private UserAccountService userAccountService;
 

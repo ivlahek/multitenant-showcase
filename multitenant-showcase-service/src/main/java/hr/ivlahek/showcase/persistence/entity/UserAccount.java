@@ -26,11 +26,11 @@ public class UserAccount {
     private String lastName;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "organization_id")
-    private Organization organization;
+    @JoinColumn(name = "tenant_id")
+    private Tenant tenant;
 
-    public Organization getOrganization() {
-        return organization;
+    public Tenant getTenant() {
+        return tenant;
     }
 
     public Integer getId() {
@@ -60,6 +60,6 @@ public class UserAccount {
     @PrePersist
     @PreUpdate
     public void prePersist() {
-        organization = TenantContext.getCurrentOrganization();
+        tenant = TenantContext.getCurrentTenant();
     }
 }
