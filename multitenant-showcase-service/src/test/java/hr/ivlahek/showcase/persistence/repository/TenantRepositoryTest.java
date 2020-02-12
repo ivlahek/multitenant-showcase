@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class TenantRepositoryTest extends RepositoryTest {
+public class TenantRepositoryTest extends RepositoryMessageHandler {
 
     @Test
     public void should_create() {

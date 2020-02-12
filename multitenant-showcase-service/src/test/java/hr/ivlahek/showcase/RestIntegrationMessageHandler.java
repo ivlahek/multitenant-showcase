@@ -22,7 +22,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Category(IntegrationTest.class)
-public abstract class RestIntegrationTest {
+public abstract class RestIntegrationMessageHandler {
 
     @Autowired
     protected

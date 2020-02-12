@@ -1,6 +1,6 @@
 package hr.ivlahek.showcase.rest.organization;
 
-import hr.ivlahek.showcase.RestIntegrationTest;
+import hr.ivlahek.showcase.RestIntegrationMessageHandler;
 import hr.ivlahek.showcase.dto.organization.CreatTenantDTO;
 import hr.ivlahek.showcase.dto.organization.TenantDTO;
 import hr.ivlahek.showcase.dto.organization.OrganizationEndPoints;
@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class TenantControllerTest extends RestIntegrationTest {
+public class TenantControllerMessageHandler extends RestIntegrationMessageHandler {
 
     @Autowired
     protected TestRestTemplate restTemplate;

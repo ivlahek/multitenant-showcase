@@ -5,7 +5,7 @@ import hr.ivlahek.showcase.mapping.JsonConverter;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CommandTest {
+public class CommandMessageHandler {
 
     private JsonConverter jsonConverter;
 

@@ -28,29 +28,34 @@ public class TenantInterceptor implements Ordered {
 
     private static final Logger log = LoggerFactory.getLogger(TenantInterceptor.class);
 
-    private final TenantRepository TEnantRepository;
+    private final TenantRepository tenantRepository;
 
     @Around("@annotation(InboundRequest)")
     public Object logInboundRequest(ProceedingJoinPoint joinPoint) throws Throwable {
         log.debug("Intercepting inbound request...");
 
-        String companyId = extractCompanyId(joinPoint)
+        log.debug("Extracting tenant id from method arguments!");
+        String companyId = extractTenantId(joinPoint)
                 .orElseThrow(RuntimeException::new);
 
-        Tenant tenant = TEnantRepository
+        log.debug("Finding tenant by id!");
+        Tenant tenant = tenantRepository
                 .findByExternalId(companyId)
                 .orElseThrow(RuntimeException::new);
 
+        log.debug("Setting current tenant to Thread local variable!");
         TenantContext.setCurrentTenant(tenant);
 
-        Object proceed = joinPoint.proceed();
-
-        TenantContext.clear();
-
-        return proceed;
+        try {
+            log.debug("Continuing with the execution!");
+            return joinPoint.proceed();
+        } finally {
+            log.error("Error! Clearing tenant context!");
+            TenantContext.clear();
+        }
     }
 
-    public Optional<String> extractCompanyId(ProceedingJoinPoint joinPoint) {
+    public Optional<String> extractTenantId(ProceedingJoinPoint joinPoint) {
         Signature signature = joinPoint.getSignature();
         Method method = ((MethodSignature) signature).getMethod();
         Annotation[][] annotationMatrix = method.getParameterAnnotations();

@@ -5,7 +5,7 @@ import hr.ivlahek.showcase.persistence.entity.UserAccountBuilder;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class UserAccountRepositoryTest extends RepositoryTest {
+public class UserAccountRepositoryMessageHandler extends RepositoryMessageHandler {
 
     @Autowired
     private UserAccountRepository userAccountRepository;

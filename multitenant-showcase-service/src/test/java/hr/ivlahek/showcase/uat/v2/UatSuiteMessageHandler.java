@@ -19,7 +19,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({TestUatSteps.class})
-public class UatSuiteTest {
+public class UatSuiteMessageHandler {
 //
 //    public static KafkaMessageListenerContainer<String, String> container;
 //    public static BlockingQueue<ConsumerRecord<String, String>> records;
