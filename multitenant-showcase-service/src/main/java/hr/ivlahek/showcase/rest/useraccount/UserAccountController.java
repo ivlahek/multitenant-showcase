@@ -9,10 +9,12 @@ import hr.ivlahek.showcase.persistence.entity.UserAccount;
 import hr.ivlahek.showcase.persistence.repository.UserAccountRepository;
 import hr.ivlahek.showcase.rest.organization.TenantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping
+@Transactional
 public class UserAccountController {
 
     @Autowired
