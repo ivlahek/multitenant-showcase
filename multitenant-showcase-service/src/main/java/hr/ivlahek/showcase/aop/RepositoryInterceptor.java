@@ -20,7 +20,7 @@ public class RepositoryInterceptor {
 
     private Logger logger = LoggerFactory.getLogger(RepositoryInterceptor.class);
 
-    @Around("execution(* org.springframework.data.jpa.repository.JpaRepository.*(..))")
+    @Around("execution(* org.springframework.data.repository.Repository+.*(..))")
     public Object inWebLayer(ProceedingJoinPoint joinPoint) throws Throwable {
         if (entityManager.isJoinedToTransaction()) {
             Session session = entityManager.unwrap(Session.class);
