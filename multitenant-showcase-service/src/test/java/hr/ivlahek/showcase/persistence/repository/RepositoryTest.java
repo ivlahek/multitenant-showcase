@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @Category(IntegrationTest.class)
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {TestJpaConfig.class})
-public abstract class RepositoryMessageHandler {
+public abstract class RepositoryTest {
 
     @Autowired
     TenantRepository tenantRepository;

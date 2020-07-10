@@ -1,6 +1,6 @@
 package hr.ivlahek.showcase.uat.v2;
 
-import hr.ivlahek.showcase.UatAbstractMessageHandler;
+import hr.ivlahek.showcase.UatAbstractTest;
 import hr.ivlahek.showcase.uat.v2.steps.mobileapp.CreateMobileAppEventStep;
 import hr.ivlahek.showcase.uat.v2.steps.mobileapp.CreateMobileAppRestStep;
 import hr.ivlahek.showcase.uat.v2.steps.notification.SendNotificationRestStep;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
 
-public class TestUatSteps extends UatAbstractMessageHandler {
+public class TestUatSteps extends UatAbstractTest {
     @Autowired
     private CreateOrganizationRestStep createOrganizationRestStep;
     @Autowired

@@ -1,6 +1,6 @@
 package hr.ivlahek.showcase.rest.mobileapp;
 
-import hr.ivlahek.showcase.RestIntegrationMessageHandler;
+import hr.ivlahek.showcase.RestIntegrationTest;
 import hr.ivlahek.showcase.aop.TenantContext;
 import hr.ivlahek.showcase.dto.mobileapp.CreateMobileApplicationDTO;
 import hr.ivlahek.showcase.dto.mobileapp.MobileApplicationDTO;
@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MobileApplicationControllerMessageHandler extends RestIntegrationMessageHandler {
+public class MobileApplicationControllerTest extends RestIntegrationTest {
     @Autowired
     protected TestRestTemplate restTemplate;
 

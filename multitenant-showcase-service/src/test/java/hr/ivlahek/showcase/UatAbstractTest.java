@@ -31,7 +31,7 @@ import java.util.Map;
         count = 1,
         partitions = 1)
 
-public abstract class UatAbstractMessageHandler {
+public abstract class UatAbstractTest {
     @Autowired
     protected
     TenantRepository TEnantRepository;

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MobileApplicationRepositoryMessageHandler extends RepositoryMessageHandler {
+public class MobileApplicationRepositoryTest extends RepositoryTest {
 
     @Autowired
     private MobileApplicationRepository mobileApplicationRepository;

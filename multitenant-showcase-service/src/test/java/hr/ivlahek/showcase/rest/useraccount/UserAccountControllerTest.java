@@ -1,6 +1,6 @@
 package hr.ivlahek.showcase.rest.useraccount;
 
-import hr.ivlahek.showcase.RestIntegrationMessageHandler;
+import hr.ivlahek.showcase.RestIntegrationTest;
 import hr.ivlahek.showcase.dto.user.CreateUserAccountDTO;
 import hr.ivlahek.showcase.dto.user.UserAccountDTO;
 import hr.ivlahek.showcase.dto.user.UserAccountEndpoints;
@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class UserAccountControllerMessageHandler extends RestIntegrationMessageHandler {
+public class UserAccountControllerTest extends RestIntegrationTest {
     @Autowired
     protected TestRestTemplate restTemplate;
 
