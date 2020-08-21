@@ -1,5 +1,6 @@
 package hr.ivlahek.showcase.aop;
 
+import hr.ivlahek.showcase.persistence.repository.TenantRepository;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -27,15 +28,15 @@ public class RepositoryInterceptor {
     @Around("execution(* org.springframework.data.repository.Repository+.*(..))")
     public Object inWebLayer(ProceedingJoinPoint joinPoint) throws Throwable {
 
-        if (activeProfile.equals("prod")) {
-            if (entityManager.isOpen()) {
+        if (activeProfile.equals("prod") ) {
+            if (entityManager.isOpen() && notOfAClassTypeTenantRepository(joinPoint.getSignature().getDeclaringType())) {
                 Session session = entityManager.unwrap(Session.class);
                 Integer id = TenantContext.getCurrentTenant().getId();
                 session.enableFilter("userAccountFilter").setParameter("tenantId", id);
                 session.enableFilter("mobileApplicationFilter").setParameter("tenantId", id);
             }
         } else {
-            if (entityManager.isJoinedToTransaction()) {
+            if (entityManager.isJoinedToTransaction() && notOfAClassTypeTenantRepository(joinPoint.getSignature().getDeclaringType())) {
                 Session session = entityManager.unwrap(Session.class);
                 Integer id = TenantContext.getCurrentTenant().getId();
                 session.enableFilter("userAccountFilter").setParameter("tenantId", id);
@@ -43,6 +44,10 @@ public class RepositoryInterceptor {
             }
         }
         return joinPoint.proceed();
+    }
+
+    private boolean notOfAClassTypeTenantRepository(Class declaringType) {
+        return !declaringType.equals(TenantRepository.class);
     }
 
 }
