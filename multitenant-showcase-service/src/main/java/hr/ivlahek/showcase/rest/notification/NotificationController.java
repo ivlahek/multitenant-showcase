@@ -35,7 +35,7 @@ public class NotificationController {
                                  @RequestBody SendNotificationRequest request) {
         logger.info(request.toString());
 
-        Optional<MobileApplication> optionalMobileApplication = mobileApplicationRepository.findById(request.getMobileApplicationId());
+        Optional<MobileApplication> optionalMobileApplication = mobileApplicationRepository.getById(request.getMobileApplicationId());
 
         if (!optionalMobileApplication.isPresent()) {
             logger.error("Mobile application can not be found!");

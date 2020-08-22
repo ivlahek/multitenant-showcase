@@ -20,7 +20,7 @@ public class UserAccountService {
     private TenantService tenantService;
 
     public UserAccount findById(int userAccountId) {
-        Optional<UserAccount> userAccount = userAccountRepository.findById(userAccountId);
+        Optional<UserAccount> userAccount = userAccountRepository.getById(userAccountId);
 
         if (!userAccount.isPresent()) {
             throw new NotFoundException(ExceptionMessage.USER_ACCOUNT_NOT_FOUND);

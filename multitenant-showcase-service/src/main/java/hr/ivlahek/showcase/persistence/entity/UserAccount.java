@@ -1,6 +1,5 @@
 package hr.ivlahek.showcase.persistence.entity;
 
-import hr.ivlahek.showcase.aop.TenantContext;
 import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
@@ -9,9 +8,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "user_account")
-@FilterDef(name = "userAccountFilter", parameters = {@ParamDef(name = "organizationId", type = "int")})
-@Filter(name = "userAccountFilter", condition = "organization_id = :organizationId")
-public class UserAccount {
+@FilterDef(name = "userAccountFilter", parameters = {@ParamDef(name = "tenantId", type = "int")})
+@Filter(name = "userAccountFilter", condition = "tenant_id = :tenantId")
+public class UserAccount extends Base {
 
     @Id
     @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
@@ -25,13 +24,6 @@ public class UserAccount {
     @Column(name = "last_name")
     private String lastName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tenant_id")
-    private Tenant tenant;
-
-    public Tenant getTenant() {
-        return tenant;
-    }
 
     public Integer getId() {
         return id;
@@ -57,9 +49,5 @@ public class UserAccount {
         this.lastName = lastName;
     }
 
-    @PrePersist
-    @PreUpdate
-    public void prePersist() {
-        tenant = TenantContext.getCurrentTenant();
-    }
+
 }

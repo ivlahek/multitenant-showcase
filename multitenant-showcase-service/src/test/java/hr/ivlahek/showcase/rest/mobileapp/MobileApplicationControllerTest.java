@@ -29,7 +29,7 @@ public class MobileApplicationControllerTest extends RestIntegrationTest {
 
         //CHECK
         assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
-        assertThat(mobileApplicationRepository.findById(responseEntity.getBody().getId())).isPresent();
+        assertThat(mobileApplicationRepository.getById(responseEntity.getBody().getId())).isPresent();
     }
 
     @Test

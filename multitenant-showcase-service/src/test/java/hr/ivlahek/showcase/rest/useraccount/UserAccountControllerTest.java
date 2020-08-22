@@ -29,7 +29,7 @@ public class UserAccountControllerTest extends RestIntegrationTest {
 
         //CHECK
         assertThat(responseEntity.getBody().getId()).isNotNull();
-        UserAccount userAccount = userAccountRepository.findById(responseEntity.getBody().getId()).get();
+        UserAccount userAccount = userAccountRepository.getById(responseEntity.getBody().getId()).get();
         assertThat(userAccount).isNotNull();
         new UserAccountAsserter()
                 .withOrganizationId(tenant.getId())

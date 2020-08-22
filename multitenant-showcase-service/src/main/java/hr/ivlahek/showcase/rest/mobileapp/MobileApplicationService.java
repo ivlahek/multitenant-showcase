@@ -23,7 +23,7 @@ public class MobileApplicationService {
     private UserAccountService userAccountService;
 
     public MobileApplication findById(int mobileAppId) {
-        Optional<MobileApplication> optionalMobileApplication = mobileApplicationRepository.findById(mobileAppId);
+        Optional<MobileApplication> optionalMobileApplication = mobileApplicationRepository.getById(mobileAppId);
 
         if (!optionalMobileApplication.isPresent()) {
             throw new NotFoundException(ExceptionMessage.MOBILE_APP_NOT_FOUND);

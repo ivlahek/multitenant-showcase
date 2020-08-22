@@ -31,14 +31,14 @@ public class RepositoryInterceptor {
         if (activeProfile.equals("prod") ) {
             if (entityManager.isOpen() && notOfAClassTypeTenantRepository(joinPoint.getSignature().getDeclaringType())) {
                 Session session = entityManager.unwrap(Session.class);
-                Integer id = TenantContext.getCurrentTenant().getId();
+                Integer id = TenantContext.getCurrentTenantId();
                 session.enableFilter("userAccountFilter").setParameter("tenantId", id);
                 session.enableFilter("mobileApplicationFilter").setParameter("tenantId", id);
             }
         } else {
             if (entityManager.isJoinedToTransaction() && notOfAClassTypeTenantRepository(joinPoint.getSignature().getDeclaringType())) {
                 Session session = entityManager.unwrap(Session.class);
-                Integer id = TenantContext.getCurrentTenant().getId();
+                Integer id = TenantContext.getCurrentTenantId();
                 session.enableFilter("userAccountFilter").setParameter("tenantId", id);
                 session.enableFilter("mobileApplicationFilter").setParameter("tenantId", id);
             }

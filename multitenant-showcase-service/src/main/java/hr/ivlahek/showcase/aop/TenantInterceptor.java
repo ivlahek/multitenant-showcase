@@ -10,21 +10,19 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Optional;
 
-import static java.lang.Integer.MAX_VALUE;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
 
 @Aspect
 @Component
 @RequiredArgsConstructor
-public class TenantInterceptor implements Ordered {
+public class TenantInterceptor {
 
     private static final Logger log = LoggerFactory.getLogger(TenantInterceptor.class);
 
@@ -50,7 +48,7 @@ public class TenantInterceptor implements Ordered {
             log.debug("Continuing with the execution!");
             return joinPoint.proceed();
         } finally {
-            log.error("Error! Clearing tenant context!");
+            log.error(" Clearing tenant context!");
             TenantContext.clear();
         }
     }
@@ -68,11 +66,6 @@ public class TenantInterceptor implements Ordered {
             }
         }
         return empty();
-    }
-
-    @Override
-    public int getOrder() {
-        return MAX_VALUE;
     }
 
 }
