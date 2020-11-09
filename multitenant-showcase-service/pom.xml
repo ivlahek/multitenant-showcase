@@ -13,6 +13,10 @@
     <groupId>hr.ivlahek</groupId>
     <artifactId>multitenant-showcase-service</artifactId>
 
+    <properties>
+        <postgres.docker.version>11</postgres.docker.version>
+    </properties>
+
 
     <dependencies>
         <dependency>
@@ -215,10 +219,10 @@
                             <images>
                                 <image>
                                     <!--Promjena imagea (vrsta ili verzija treba biti upisana u image-name i build-from-->
-                                    <name>postgres:9.6</name>
+                                    <name>postgres:${postgres.docker.version}</name>
                                     <alias>postgres-${project.name}</alias>
                                     <build>
-                                        <from>postgres:9.6</from>
+                                        <from>postgres:${postgres.docker.version}</from>
                                         <tags>
                                             <tag>${project.artifactId}-${project.version}</tag>
                                         </tags>
@@ -239,6 +243,7 @@
                                             <port>5432:5432</port>
                                         </ports>
                                         <env>
+                                            <POSTGRES_HOST_AUTH_METHOD>trust</POSTGRES_HOST_AUTH_METHOD>
                                         </env>
                                         <namingStrategy>alias</namingStrategy>
                                     </run>
