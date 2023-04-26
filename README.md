@@ -10,3 +10,4 @@ Others multi tenant approaches are supported by the Hibernate and Spring out of 
 
 Shared database and shared schema is not supported by Hibernate and Spring and some manual labor is needed.
 
+Whole article can be found on the following link https://medium.com/better-programming/how-to-build-a-multi-tenant-application-using-spring-boot-and-hibernate-718e16bfd456
